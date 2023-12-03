@@ -18,12 +18,10 @@ const port = 9000;
 
 const { default: axios } = require('axios');
 
-//axios.defaults.baseURL = "http://localhost:8989/api";
 axios.defaults.baseURL = "https://api.myhotspace.co/api/";
 const { NEXT_QUEUE } = require('./Data/endpoints');
 
 const ffmpeg = require('fluent-ffmpeg');
-ffmpeg.setFfmpegPath('ffmpeg/ffmpeg.exe');
 
 const s3 = new AWS.S3({
   accessKeyId: ACCESS_KEY,
@@ -83,13 +81,6 @@ app.get('/stream', async (req, res) => {
     // Pipe the entire stream to the response
     stream.pipe(res);
   }
-
-  /*console.log(ContentLength);
-  
-  res.setHeader('Content-Type', 'video/webm');
-  res.setHeader('Content-Length', ContentLength);
-  
-  stream.pipe(res);*/
 });
 
 // Function to get S3 object metadata
